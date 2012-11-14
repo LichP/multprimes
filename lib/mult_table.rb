@@ -37,7 +37,7 @@ class MultTable
   attr :multipliers
 
   def initialize(*multipliers)
-    @multipliers = multipliers.flatten
+    @multipliers = multipliers.flatten.sort
   end
   
   def line(i)
@@ -59,5 +59,9 @@ class MultTable
     1.upto(multipliers.length).collect do |i|
       [self.multipliers[i - 1], self.line(i)]
     end
+  end
+  
+  def largest_product
+    self.multipliers.last ** 2
   end
 end

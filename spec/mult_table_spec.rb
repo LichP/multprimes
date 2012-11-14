@@ -9,6 +9,10 @@ describe MultTable do
     MultTable.new.multipliers.should                 == []
   end
   
+  it "should arrange multipliers in ascending order" do
+    MultTable.new(4,2,7,3).multipliers.should == [2, 3, 4, 7]
+  end  
+  
   describe "#line(i)" do
     it "should return an array equal to #mutipliers when i = 0" do
       mt = MultTable.new(2, 3, 4, 5)
@@ -28,6 +32,12 @@ describe MultTable do
     it "should be identical to #multipliers" do
       mt = MultTable.new(2, 3, 4, 5)
       mt.header_line.should == mt.multipliers
+    end
+  end
+  
+  describe "#largest_product" do
+    it "should return the largest product in the table" do
+      MultTable.new(2, 3, 4, 5).largest_product.should == 25
     end
   end
   
@@ -64,7 +74,7 @@ describe MultTable do
   describe "ScreenFromatter" do
     it "should format MultTable for screen output" do
       mt = MultTable.new(2, 3, 4)
-      MultTable::SimpleFormater.new(mt).output.should == <<SCREEN_OUTPUT
+      MultTable::ScreenFormater.new(mt).output.should == <<SCREEN_OUTPUT
   |  2  3  4
 --+---------
  2|  4  6  8
