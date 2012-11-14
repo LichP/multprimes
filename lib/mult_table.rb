@@ -24,15 +24,18 @@ class MultTable
     end
   end
   
-  # @return #line(0)
+  # Same as calling #line(0)
+  #
+  # @return [Array<Integer>]
   def header_line
     self.line(0)
   end
   
   # Generate all lines in the multiplication table (except for the header)
   #
-  # @return [Array<Integer, Array<Integer>] an array of lines, each line
-  # consisting of the multiplier and an array of products of that multiplier
+  # @return [Array<Integer, Array<Integer>>] an array of lines, each line
+  #         consisting of the multiplier and an array of products of that
+  #         multiplier
   def lines
     1.upto(multipliers.length).collect do |i|
       [self.multipliers[i - 1], self.line(i)]
@@ -40,7 +43,7 @@ class MultTable
   end
   
   # @return [Integer] the largest product in the table, i.e. the square of
-  # the last (therefore largest) multiplier
+  #         the last (therefore largest) multiplier
   def largest_product
     self.multipliers.last ** 2
   end
