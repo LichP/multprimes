@@ -30,4 +30,47 @@ describe MultTable do
       mt.header_line.should == mt.multipliers
     end
   end
+  
+  describe "Formatter" do
+    mt = MultTable.new(2, 3)
+    formatter = MultTable::Formatter.new(mt)
+  
+    describe "#header" do
+      it "should return a string representation of MultTable#header_line" do
+        formatter.header.should == "[2, 3]\n"
+      end
+    end
+    
+    describe "#build_line(multiplier, products)" do
+      it "should return a string representation of it arguments" do
+        formatter.build_line(2, [3, 4]).should == "2: [3, 4]\n"
+      end
+    end
+  
+    describe "#output" do
+      it "should create output consisting of the result of #header concatenated with the result of iterating #mult_table.lines into #build_line" do
+        formatter.output.should == "[2, 3]\n2: [4, 6]\n3: [6, 9]\n"
+      end
+    end
+  end
+  
+  describe "CsvFormatter" do
+    it "should format a MultTable as a CSV" do
+      mt = MultTable.new(2, 3, 4)
+      MultTable::CsvFormatter.new(mt).output.should == ",2,3,4\r\n2,4,6,8\r\n3,6,9,12\r\n4,8,12,16\r\n"
+    end
+  end
+  
+  describe "ScreenFromatter" do
+    it "should format MultTable for screen output" do
+      mt = MultTable.new(2, 3, 4)
+      MultTable::SimpleFormater.new(mt).output.should == <<SCREEN_OUTPUT
+  |  2  3  4
+--+---------
+ 2|  4  6  8
+ 3|  6  9 12
+ 4|  8 12 16
+SCREEN_OUTPUT
+    end
+  end
 end
