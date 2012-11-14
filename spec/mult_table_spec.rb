@@ -71,15 +71,15 @@ describe MultTable do
     end
   end
   
-  describe "ScreenFromatter" do
+  describe "ScreenFormatter" do
     it "should format MultTable for screen output" do
       mt = MultTable.new(2, 3, 4)
-      MultTable::ScreenFormater.new(mt).output.should == <<SCREEN_OUTPUT
-  |  2  3  4
---+---------
- 2|  4  6  8
- 3|  6  9 12
- 4|  8 12 16
+      MultTable::ScreenFormatter.new(mt).output.should == <<SCREEN_OUTPUT
+   |  2  3  4
+---+---------
+  2|  4  6  8
+  3|  6  9 12
+  4|  8 12 16
 SCREEN_OUTPUT
     end
   end
