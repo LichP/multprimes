@@ -8,8 +8,16 @@ describe Primes do
       Primes.first(0).should       be_nil
     end
     
-    it "should return the first n primes" do
+    it "should return the first n primes (n = 3, n = 10)" do
       Primes.first(3).should == [2, 3, 5]
+      Primes.first(10).should == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]      
+    end
+    
+    it "should return a 100 element array starting with 2 and ending with 541 (n = 100)" do
+      primes = Primes.first(100)
+      primes.length.should == 100
+      primes.first.should  == 2
+      primes.last.should   == 541
     end
   end
   
