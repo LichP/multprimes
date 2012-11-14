@@ -33,6 +33,26 @@ class MultTable
       "#{multiplier}," + products.join(',') + "\r\n"
     end
   end
+  
+  class ScreenFormatter < Formatter
+    def field_width
+      @field_width ||= self.mult_table.largest_product.to_s.length + 1
+    end
+  
+    def pad_number(n)
+      n.to_s.rjust(self.field_width, ' ')
+    end
+    
+    def header
+      line = "#{self.pad_number('')}|" + self.mult_table.header_line.map{ |n| self.pad_number(n) }.join + "\n"
+      dashes = ("-" * (line.length - 1)) << "\n"
+      line + dashes.sub(/(?<=^-{#{self.field_width}})-/, "+")
+    end
+    
+    def build_line(multiplier, products)
+      "#{self.pad_number(multiplier)}|" + products.map{ |n| self.pad_number(n) }.join + "\n"
+    end
+  end
 
   attr :multipliers
 
