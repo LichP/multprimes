@@ -7,10 +7,11 @@ class MultTable
     end
     
     def header
-      ""
+      self.mult_table.header_line.to_s + "\n"
     end
     
     def build_line(multiplier, products)
+      multiplier.to_s + ": " + products.to_s + "\n"
     end
     
   
