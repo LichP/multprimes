@@ -19,6 +19,12 @@ describe Primes do
       primes.first.should  == 2
       primes.last.should   == 541
     end
+
+    it "should return a 1000 element array ending with 7919 (n = 1000)" do
+      primes = Primes.first(1000)
+      primes.length.should == 1000
+      primes.last.should   == 7919
+    end
   end
   
   describe ".initial_sieve_for(n)" do
