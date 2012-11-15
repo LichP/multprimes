@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), '..', 'lib', 'mult_table')
+require File.join(File.dirname(__FILE__), '..', 'lib', 'mult_primes')
 
 describe MultTable do
   it "should have a multipliers attribute equal to an array of the initialization arguments" do

@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), '..', 'lib', 'primes')
+require File.join(File.dirname(__FILE__), '..', 'lib', 'mult_primes')
 
 describe Primes do
   describe ".first(n)" do
