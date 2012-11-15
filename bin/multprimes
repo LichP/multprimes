@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+$:.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+
+require 'mult_primes'
+require 'optparse'
+
+# Process options
+options = {}
+option_parser  = OptionParser.new do |opts|
+  opts.banner = <<BANNER
+multprimes: Output a multiplication table of prime numbers
+
+Usage: multprimes [options]
+BANNER
+
+  options[:count] = 10
+  opts.on("-c COUNT",
+          "--count COUNT",
+          Integer,
+          "Number of primes to include in the table (default: 10)") do |count|
+    unless count > 0
+      raise ArgumentError, "COUNT must be a positive integer"
+    end
+    options[:count] = count
+  end
+end
+
+option_parser.parse!
+
+primes = Primes.first(options[:count])
+mult_table = MultTable.new(primes)
+formatter = MultTable::ScreenFormatter.new(mult_table)
+puts formatter.output
