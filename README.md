@@ -14,7 +14,8 @@ Installation
 Clone the repository, build the gem, then install it:
 
 ```
-INSERT GEM COMMANDS HERE
+gem build multprimes.gemspec
+sudo gem install multprimes-1.0.0.gem
 ```
 
 Usage
