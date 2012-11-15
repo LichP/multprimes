@@ -24,11 +24,26 @@ BANNER
     end
     options[:count] = count
   end
+
+  options[:formatter] = :screen
+  opts.on("-f FORMAT",
+          "--format FORMAT",
+          [:screen, :csv],
+          "Format of the table; must be either 'screen' or 'csv' (default: screen)") do |format|
+    options[:formatter] = format
+  end
 end
 
 option_parser.parse!
 
 primes = Primes.first(options[:count])
 mult_table = MultTable.new(primes)
-formatter = MultTable::ScreenFormatter.new(mult_table)
+
+formatter = case options[:formatter]
+  when :screen
+    MultTable::ScreenFormatter.new(mult_table)
+  when :csv
+    MultTable::CsvFormatter.new(mult_table)
+end
+
 puts formatter.output
